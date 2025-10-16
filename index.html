@@ -4,55 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Advanced Resume Builder</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css">
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Advanced Resume Builder</h1>
+    <header class="site-header">
+        <div class="logo">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 4C4 3.44772 4.44772 3 5 3H19C19.5523 3 20 3.44772 20 4V20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 3V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>ResumeBuilder</span>
+        </div>
+    </header>
 
-        <!-- Template Selection -->
-        <h3>Select Template:</h3>
-        <select id="templateSelect">
-            <option value="classic">Classic</option>
-            <option value="modern">Modern</option>
-            <option value="professional">Professional</option>
-        </select>
+    <main class="container">
+        <div class="editor-panel">
+            <h1>Create Your Resume</h1>
+            <p class="subtitle">Fill in your details to generate a professional resume in minutes.</p>
 
-        <h3>Import Your Data:</h3>
-        <input type="file" id="importFile" accept=".json, .csv">
+            <form id="resumeForm">
+                <div class="form-section">
+                    <div class="input-group">
+                        <label for="templateSelect">Select Template</label>
+                        <select id="templateSelect">
+                            <option value="classic">Classic</option>
+                            <option value="modern">Modern</option>
+                            <option value="professional">Professional</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="importFile">Or Import Data (.json)</label>
+                        <input type="file" id="importFile" accept=".json">
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Personal Information</h3>
+                    <div class="input-group"><label for="name">Full Name</label><input type="text" id="name" name="name" placeholder="e.g., Jane Doe"></div>
+                    <div class="input-group"><label for="email">Email Address</label><input type="email" id="email" name="email" placeholder="e.g., jane.doe@example.com"></div>
+                    <div class="input-group"><label for="phone">Phone Number</label><input type="text" id="phone" name="phone" placeholder="e.g., +1 234-567-890"></div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Work Experience</h3>
+                    <div class="input-group"><label for="jobTitle">Job Title</label><input type="text" id="jobTitle" name="jobTitle" placeholder="e.g., Software Engineer"></div>
+                    <div class="input-group"><label for="company">Company</label><input type="text" id="company" name="company" placeholder="e.g., Tech Solutions Inc."></div>
+                    <div class="input-group"><label for="years">Years of Experience</label><input type="text" id="years" name="years" placeholder="e.g., 5"></div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Education</h3>
+                    <div class="input-group"><label for="degree">Degree</label><input type="text" id="degree" name="degree" placeholder="e.g., B.S. in Computer Science"></div>
+                    <div class="input-group"><label for="school">School / University</label><input type="text" id="school" name="school" placeholder="e.g., University of Technology"></div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Skills</h3>
+                    <div class="input-group"><label for="skills">Skills (comma separated)</label><input type="text" id="skills" name="skills" placeholder="e.g., JavaScript, Project Management, C#"></div>
+                </div>
+
+                <button type="submit">Generate & Download PDF</button>
+            </form>
+        </div>
         
-        <h3>Or Fill the Form:</h3>
-        <form id="resumeForm">
-            <!-- Personal Information -->
-            <h3>Personal Information</h3>
-            <label for="name">Name:</label><input type="text" id="name" name="name">
-            <label for="email">Email:</label><input type="email" id="email" name="email">
-
-            <!-- Work Experience -->
-            <h3>Work Experience</h3>
-            <label for="jobTitle">Job Title:</label><input type="text" id="jobTitle" name="jobTitle">
-            <label for="company">Company:</label><input type="text" id="company" name="company">
-            <label for="years">Years:</label><input type="text" id="years" name="years">
-
-            <!-- Education -->
-            <h3>Education</h3>
-            <label for="degree">Degree:</label><input type="text" id="degree" name="degree">
-            <label for="school">School:</label><input type="text" id="school" name="school">
-
-            <!-- Skills -->
-            <h3>Skills</h3>
-            <label for="skills">Skills:</label><input type="text" id="skills" name="skills">
-
-            <!-- Contact Information -->
-            <h3>Contact Information</h3>
-            <label for="phone">Phone:</label><input type="text" id="phone" name="phone">
-
-            <button type="submit">Generate Resume</button>
-        </form>
-
-        <div id="resumePreview"></div>
-    </div>
+        <div class="preview-panel">
+            <div id="resumePreview">
+                <div class="placeholder">
+                    <h2>Preview Area</h2>
+                    <p>Your generated resume will appear here.</p>
+                </div>
+            </div>
+        </div>
+    </main>
 
     <script src="script.js"></script>
 </body>
