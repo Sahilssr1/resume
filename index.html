@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Resume Builder</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Advanced Resume Builder</h1>
+
+        <!-- Template Selection -->
+        <h3>Select Template:</h3>
+        <select id="templateSelect">
+            <option value="classic">Classic</option>
+            <option value="modern">Modern</option>
+            <option value="professional">Professional</option>
+        </select>
+
+        <h3>Import Your Data:</h3>
+        <input type="file" id="importFile" accept=".json, .csv">
+        
+        <h3>Or Fill the Form:</h3>
+        <form id="resumeForm">
+            <!-- Personal Information -->
+            <h3>Personal Information</h3>
+            <label for="name">Name:</label><input type="text" id="name" name="name">
+            <label for="email">Email:</label><input type="email" id="email" name="email">
+
+            <!-- Work Experience -->
+            <h3>Work Experience</h3>
+            <label for="jobTitle">Job Title:</label><input type="text" id="jobTitle" name="jobTitle">
+            <label for="company">Company:</label><input type="text" id="company" name="company">
+            <label for="years">Years:</label><input type="text" id="years" name="years">
+
+            <!-- Education -->
+            <h3>Education</h3>
+            <label for="degree">Degree:</label><input type="text" id="degree" name="degree">
+            <label for="school">School:</label><input type="text" id="school" name="school">
+
+            <!-- Skills -->
+            <h3>Skills</h3>
+            <label for="skills">Skills:</label><input type="text" id="skills" name="skills">
+
+            <!-- Contact Information -->
+            <h3>Contact Information</h3>
+            <label for="phone">Phone:</label><input type="text" id="phone" name="phone">
+
+            <button type="submit">Generate Resume</button>
+        </form>
+
+        <div id="resumePreview"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
